@@ -6,6 +6,7 @@ on:
     types: [closed]
 
 jobs:
-  tag:
+  merge:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
+    steps:
+    run: gh pr merge ${{ steps.cpr.outputs.pull-request-url }} --merge
