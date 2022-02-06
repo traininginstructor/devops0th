@@ -9,4 +9,13 @@ jobs:
   merge:
     runs-on: ubuntu-latest
     steps:
-    run: gh pr merge ${{ steps.cpr.outputs.pull-request-url }} --merge
+        - name: merge pull request
+          uses: actions/github-script@0.4.0
+          with:
+            # github-token: ${{secrets.GITHUB_TOKEN}}
+            script: |
+              github.pulls.merge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.payload.pull_request.number
+              })
