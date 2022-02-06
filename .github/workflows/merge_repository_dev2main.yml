@@ -3,19 +3,10 @@ on:
   pull_request:
     branches:
       - master
-    types: [closed]
 
 jobs:
   merge:
     runs-on: ubuntu-latest
     steps:
-        - name: merge pull request
-          uses: actions/github-script@0.4.0
-          with:
-            # github-token: ${{secrets.GITHUB_TOKEN}}
-            script: |
-              github.pulls.merge({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                pull_number: context.payload.pull_request.number
-              })
+      - name: merge pull request
+        run: gh pr merge ${{ https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git }} --merge
