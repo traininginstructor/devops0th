@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@main
 
       - name: Merge by labeled
-        uses: devmasx/merge-branch@main
+        uses: traininginstructor/devops0th@main
         with:
           label_name: 'merged in develop'
           target_branch: 'develop'
